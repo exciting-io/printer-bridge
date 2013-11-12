@@ -13,9 +13,11 @@
 <form action="" method="post" id="registration">
   <div><label for="registration[print_url]">Printer URL:</label></div>
   <div><input type="text" id="registration_print_url" name="registration[print_url]" value="<%= @registration.print_url %>" /></div>
+  <div class="help"><p>It should look something like <i>http://printer.exciting.io/print/abc123def456</i></p></div>
 
   <div><label for="registration[content_url]">Content URL:</label></div>
   <div><input type="text" id="registration_content_url" name="registration[content_url]" value="<%= @registration.content_url %>" /></div>
+  <div class="help"><p>It should look something like <i>http://lp-publication.example.com/edition/</i></p></div>
 
   <div><button>Register</button></div>
 </form>
