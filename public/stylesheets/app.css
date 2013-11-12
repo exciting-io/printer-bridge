@@ -1,0 +1,26 @@
+/*
+  FIXME: You can put your styles in here if you like...
+  These are just the bare minimum to get the sample app looking alright.
+ */
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+
+#registration input,
+#registration button {
+  font-size: 110%;
+}
+#registration input[type=text] {
+  width: 100%;
+}
+#registration button {
+  margin: 0;
+  padding: 5px;
+}
+
+
+.error {
+  color: #f00;
+}

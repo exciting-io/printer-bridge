@@ -1,0 +1,21 @@
+<h1>Register your printer</h1>
+
+<p>This service can act as a simple bridge between Printer and publications designed for BERG's Little Printer</p>
+
+<% if @errors %>
+<div class="error"%>
+  <% @errors.each do |error| %>
+  <p><%= error.join(",") %></p>
+  <% end %>
+</div>
+<% end %>
+
+<form action="" method="post" id="registration">
+  <div><label for="registration[print_url]">Printer URL:</label></div>
+  <div><input type="text" id="registration_print_url" name="registration[print_url]" value="<%= @registration.print_url %>" /></div>
+
+  <div><label for="registration[content_url]">Content URL:</label></div>
+  <div><input type="text" id="registration_content_url" name="registration[content_url]" value="<%= @registration.content_url %>" /></div>
+
+  <div><button>Register</button></div>
+</form>
