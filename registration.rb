@@ -10,11 +10,11 @@ DataMapper::setup(:default, database_url)
 class Registration
   include DataMapper::Resource
   property :id, Serial
-  property :print_url, String, length: 255, unique: true,
+  property :print_url, String, length: 255
+  property :content_url, String, length: 255, unique: :print_url,
            messages: {
-             is_unique: "It looks like this printer is already registered."
+             is_unique: "It looks like this printer is already registered to receive that publication."
            }
-  property :content_url, String, length: 255
   property :delivery_count, Integer, default: 0
 
   def update_delivery_count
