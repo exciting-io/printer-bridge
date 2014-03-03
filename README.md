@@ -1,70 +1,17 @@
-Printer Sample App
+Printer Bridge
 ------------------
 
-This app is (almost) the simplest possible [Printer][project page] application.
-You should be able to use it to quickly get started building your own, much
-more interested application.
+This is a just-enough-to-work proof-of-concept bridge for connecting publication content services designed for BERG's Little Printer with the less-sophisticated-but-open-source [Printer][project page] project.
 
-This app is designed to demonstrate automated scheduling of content for
-printers, as opposed to the human-driven [mail][] and [paint][] apps. People
-who register their printers with an application like this will have content
-delivered to their printer automatically on a regular basis.
-
-You can [take a look at the source][source].
-
-If you don’t have a printer, **why not [find out how to get or make a
-printer][project page] for yourself?**
-
-How it works
-------------
-
-All this happens automatically **without user intervention, so in this
-way “publications” can be scheduled to appear** at any time.
-
-‘Registrations’ are created by storing a print URL alongside any other
-relevant information.
-
-The `rake run` task is scheduled (in this case by Heroku, but possibly
-by cron or anything else) to run at 8 am. At this time, it will send a
-request for each job to its corresponding print URL, with the `url`
-parameter set to a unique job URL in this app.
-
-The printer backend server takes this page and rasterises it for the
-destination printer to download.
+You'll need to know the URL for a publication, which almost certainly means that it's a publication you've written yourself, since BERG don't expose the URLs of the publications they use. This bridge will make a periodic print request for any registered printers to publications, including the date parameter that Little Printer publications expect.
 
 
-Deploying to Heroku
--------------------
+CAVEAT EMPTOR
+----------
 
-First, create the heroku app:
+There's a ton of functionality that this bridge does NOT implement; it will not send the edition count, or any custom user data, or anything else fancy like that. It is almost certainly too simple to be useful to anyone unless they know how to plug different web services together.
 
-    heroku apps:create <app name>
-
-Then, we'll need a few addons
-
-    heroku addons:add heroku-postgresql
-    heroku addons:add scheduler:standard
-
-Next, set up the scheduler
-
-    heroku addons:open scheduler
-
-You'll want to add a `rake run` task to run probably once a day, whenever
-is appropriate to send the data to the printer(s).
-
-We need to set some configuration for the task. In this case, it's to tell
-the scheduler what the URL for our application is. Don't forget to change
-`<app name>` to whatever you chose above!
-
-    heroku config:set APP_URL="http://<app name>.herokuapp.com"
-
-Finally, deploy the actual application
-
-    git push heroku master
-
-Once everything starts running, you should be able to visit your application
-at the URL heroku reports (probably http://<app name>.herokuapp.com) and
-start registering printer(s).
+However, if you want to improve it and/or make it more robust, please do go ahead!
 
 
 
@@ -84,7 +31,7 @@ To find out more, you can take a look at any (or all) of the following:
 [backend server]: http://printer.exciting.io
 [register here]: http://printer-weather.herokuapp.com/register
 [find out how to get or make a printer]: http://printer.exciting.io/getting-a-printer
-[source]: https://github.com/exciting-io/printer-weather
+[source]: https://github.com/exciting-io/printer-bridge
 [mail]: https://github.com/exciting-io/printer-mail
 [paint]: https://github.com/exciting-io/printer-paint
 [the Wunderground API]: http://wunderground.com
